@@ -6,8 +6,12 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 
-const APP_ID = "4352c4373bc24ea0ba172e9596a59201";
-const APP_CERTIFICATE = "f6713d31427e431eb39a30ddcbb97ca2";
+const APP_ID = process.env.AGORA_APP_ID;
+const APP_CERTIFICATE = process.env.AGORA_APP_CERTIFICATE;
+
+app.get("/", (req, res) => {
+    res.send("Agora Token Server is Running!");
+});
 
 app.get("/token", (req, res) => {
     const channelName = req.query.channel;
@@ -30,5 +34,5 @@ app.get("/token", (req, res) => {
     return res.json({ token });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
