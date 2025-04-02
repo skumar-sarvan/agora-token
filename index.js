@@ -27,7 +27,7 @@ app.get("/token", (req, res) => {
     }
 
     const expirationTimestamp = Math.floor(Date.now() / 1000) + expireTime;
-    const token = RtcTokenBuilder.buildTokenWithUid(
+    const token = RtcTokenBuilder.buildTokenWithAccount(
         APP_ID, APP_CERTIFICATE, channelName, uid, role, expirationTimestamp
     );
 
